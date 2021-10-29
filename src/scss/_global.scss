@@ -1,0 +1,34 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "asd", sans-serif;
+  background-color: $color-white;
+}
+
+.visually-hidden {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: 1200px;
+}
+
+.main {
+  flex: 1 0 auto;
+}
+
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
