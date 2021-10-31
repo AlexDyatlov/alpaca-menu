@@ -1,12 +1,17 @@
 html,
 body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  font-family: "asd", sans-serif;
+  font-size: 18px;
+  line-height: 1.3;
+  font-family: $font-roboto;
+  font-weight: 400;
+  color: $color-white;
   background-color: $color-white;
 }
 
@@ -21,8 +26,8 @@ body {
 
 .container {
   margin: 0 auto;
-  padding: 0 15px;
-  max-width: 1200px;
+  padding: 0 22px;
+  max-width: 1240px;
 }
 
 .main {
@@ -30,5 +35,5 @@ body {
 }
 
 .js-focus-visible :focus:not(.focus-visible) {
-  outline: none;
+  outline: transparent;
 }

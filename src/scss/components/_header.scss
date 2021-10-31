@@ -1,1 +1,91 @@
-//
+.header {
+  z-index: 10;
+  padding: 17px 0;
+  box-shadow: 0 4px 4px 0 rgba($color-woodsmoke, 0.4);
+  background-color: $color-woodsmoke;
+
+  @include mobile {
+    &__number {
+      position: absolute;
+      left: -10000px;
+      top: auto;
+      overflow: hidden;
+      width: 1px;
+      height: 1px;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 30px;
+    margin-left: 15px;
+
+    @include tablet {
+      position: fixed;
+      right: -120vw;
+      top: 80px;
+      display: block;
+      overflow-y: auto;
+      margin: 0;
+      padding-bottom: 80px;
+      width: 375px;
+      height: 100vh;
+      background-color: $color-woodsmoke;
+      transition: right 0.3s ease-in-out;
+    }
+
+    @include mobile {
+      width: 100%;
+    }
+
+    &--active {
+      right: 0;
+    }
+  }
+
+  &__phone {
+    position: relative;
+    flex-shrink: 0;
+    padding: 8px;
+    font-weight: 500;
+
+    @include mobile {
+      margin-right: 20px;
+      margin-left: auto;
+      padding: 20px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: -27px;
+      top: 8px;
+      width: 24px;
+      height: 24px;
+      background: center/cover no-repeat url("../img/phone.svg");
+
+      @include mobile {
+        left: 8px;
+      }
+    }
+  }
+}
+
+.overlay--active::before {
+  @include tablet {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba($color-woodsmoke, 0.5);
+  }
+}

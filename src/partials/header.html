@@ -1,5 +1,56 @@
 <header class="header">
   <div class="container">
-
+    <nav class="menu header__menu">
+      <a class="logo" href="#">
+        <img class="logo__img" src="img/logo.svg" alt="Логотип h.M">
+      </a>
+      <ul class="menu__list header__list">
+        <li class="menu__item">
+          <a class="menu__link" href="#">Главная</a>
+        </li>
+        <li class="menu__item drop">
+          <a class="menu__link" href="#">
+            Основное меню <span class="visually-hidden">выпадающий список</span>
+          </a>
+          <ul class="drop__down">
+            <li class="drop__item">
+              <a class="drop__link" href="#">Заказать вёрстку</a>
+            </li>
+            <li class="drop__item">
+              <a class="drop__link" href="#">Отправить макет на проверку</a>
+            </li>
+            <li class="drop__item">
+              <a class="drop__link" href="#">Хочу работать у вас</a>
+            </li>
+            <li class="drop__item drop__item--more">
+              <a class="drop__link" href="#">
+                Есть предложение по работе с клиентами <span class="visually-hidden">выпадающий список</span>
+              </a>
+              <ul class="drop__list">
+                <li class="drop__item">
+                  <a class="drop__link" href="#">У меня есть оффер</a>
+                </li>
+                <li class="drop__item">
+                  <a class="drop__link" href="#">Сделать партнёром</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="menu__item">
+          <a class="menu__link" href="#">Наши сервисы</a>
+        </li>
+        <li class="menu__item">
+          <a class="menu__link" href="#">Контакты</a>
+        </li>
+      </ul>
+      <a class="header__phone" href="tel:+13212223333">
+        <span class="header__number">+1 (321) 222 - 33 - 33</span>
+      </a>
+      <button class="menu__btn" type="button">
+        <span class="menu__line"></span>
+        <span class="visually-hidden">Открыть меню</span>
+      </button>
+    </nav>
   </div>
 </header>

@@ -1,0 +1,333 @@
+.menu {
+  &__item {
+    @include tablet {
+      background-color: $color-shark;
+    }
+
+    &:not(:last-child) {
+      margin-right: 40px;
+
+      @include tablet {
+        margin-right: 0;
+        border-bottom: 1px solid $color-woodsmoke;
+      }
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    padding: 8px 18px;
+    color: $color-alabaster;
+
+    @include tablet {
+      padding: 20px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  }
+
+  &__btn {
+    position: relative;
+    display: none;
+    width: 22px;
+    height: 12px;
+
+    @include tablet {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__line {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: $color-jaffa;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 22px;
+      height: 2px;
+      background-color: $color-jaffa;
+      transform: translateX(-50%);
+    }
+
+    &::before {
+      top: -1px;
+    }
+
+    &::after {
+      bottom: -1px;
+    }
+  }
+}
+
+.drop {
+  position: relative;
+
+  ul {
+    position: absolute;
+    z-index: -1;
+    background-color: $color-shark;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.4s ease-in-out, opacity 0.3s ease-in;
+
+    @include tablet {
+      position: static;
+      height: 0;
+
+      .drop__item {
+        border-top: 1px solid $color-woodsmoke;
+      }
+    }
+  }
+
+  & > a {
+    position: relative;
+
+    @include tablet {
+      &:active {
+        background-color: $color-woodsmoke;
+      }
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      right: -7px;
+      top: 17px;
+      border-top: 6px solid $color-jaffa;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
+      width: 0;
+      height: 0;
+      transition: transform 0.4s ease-in-out;
+
+      @include tablet {
+        right: 0px;
+        top: 28px;
+      }
+    }
+  }
+
+  &:hover a::before {
+    transform: rotate(180deg);
+  }
+
+  &:hover > ul {
+    z-index: 10;
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  & > ul {
+    top: 59px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    width: 320px;
+
+    @include tablet {
+      width: 100%;
+    }
+
+    li + li {
+      border-top: 1px solid rgba($color-white, 0.1);
+
+      @include tablet {
+        border-top: none;
+      }
+    }
+
+    a {
+      display: block;
+      display: -webkit-box;
+      overflow: hidden;
+      padding: 8px 12px 8px 18px;
+      height: 39px;
+      font-size: 16px;
+      line-height: 1.5;
+      text-overflow: ellipsis;
+      color: $color-alabaster;
+      transition: background-color 0.3s ease-in-out;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+
+      @include desktop {
+        &:hover {
+          background-color: $color-woodsmoke;
+        }
+      }
+
+      @include tablet {
+        padding: 20px;
+        height: auto;
+        font-size: 16px;
+        background-color: $color-shark;
+      }
+
+      @include mobile {
+        -webkit-line-clamp: initial;
+      }
+    }
+
+    li:last-child a {
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+
+      @include tablet {
+        border-radius: 0;
+      }
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 47px;
+      top: -14px;
+      border-right: 14px solid transparent;
+      border-bottom: 14px solid $color-shark;
+      border-left: 14px solid transparent;
+      width: 0;
+      height: 0;
+
+      @include tablet {
+        content: none;
+      }
+    }
+  }
+
+  &__item.drop__item--more {
+    position: relative;
+
+    @include tablet {
+      & > a:active {
+        background-color: $color-woodsmoke;
+      }
+    }
+
+    ul {
+      left: 100%;
+      bottom: 0;
+      margin-left: 25px;
+      border-radius: 8px;
+      width: 180px;
+
+      @include tablet {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: -17px;
+        bottom: 8px;
+        border-top: 12px solid transparent;
+        border-right: 18px solid $color-shark;
+        border-bottom: 12px solid transparent;
+        width: 0;
+        height: 0;
+
+        @include tablet {
+          content: none;
+        }
+      }
+
+      li {
+        &:not(:last-child) a {
+          border-radius: 0;
+        }
+
+        &:first-child a {
+          border-radius: 8px 8px 0 0;
+        }
+      }
+    }
+
+    &:hover {
+      ul {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      &::after {
+        transform: rotate(180deg);
+
+        @include tablet {
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 12px;
+      top: 17px;
+      border-top: 4px solid transparent;
+      border-right: 8px solid $color-jaffa;
+      border-bottom: 4px solid transparent;
+      width: 0;
+      height: 0;
+      transition: transform 0.4s ease-in-out;
+
+      @include tablet {
+        right: 20px;
+        top: 28px;
+        transform: rotate(-90deg);
+      }
+    }
+  }
+}
+
+.menu__link,
+.header__phone {
+  transition: color 0.3s ease-in-out;
+
+  @include desktop {
+    &:hover {
+      color: $color-burnt-sienna;
+    }
+  }
+}
+
+.menu__item.drop,
+.drop__item.drop__item--more {
+  .drop__down,
+  .drop__list {
+    &.drop__down--active {
+      height: auto;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+@include tablet {
+  .menu__item.drop:hover,
+  .drop__item.drop__item--more:hover {
+    .drop__down,
+    .drop__list {
+      height: 0;
+      opacity: 0;
+      visibility: visible;
+    }
+  }
+
+  .menu__item.drop,
+  .drop__item.drop__item--more {
+    .drop__down,
+    .drop__list {
+      &.drop__down--active {
+        height: auto;
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}
