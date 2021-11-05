@@ -29,7 +29,7 @@
 
     @include tablet {
       position: fixed;
-      right: -120vw;
+      right: 0;
       top: 80px;
       display: block;
       overflow-y: auto;
@@ -38,7 +38,8 @@
       width: 375px;
       height: 100vh;
       background-color: $color-woodsmoke;
-      transition: right 0.3s ease-in-out;
+      transform: translateX(120vw);
+      transition: transform 0.3s ease-in-out;
     }
 
     @include mobile {
@@ -46,7 +47,7 @@
     }
 
     &--active {
-      right: 0;
+      transform: translateX(0);
     }
   }
 
@@ -57,7 +58,7 @@
     font-weight: 500;
 
     @include mobile {
-      margin-right: 20px;
+      margin-right: 18px;
       margin-left: auto;
       padding: 20px;
     }
@@ -78,14 +79,22 @@
   }
 }
 
-.overlay--active::before {
-  @include tablet {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: rgba($color-woodsmoke, 0.5);
+.overlay--active {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+
+  &::before {
+    @include tablet {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: rgba($color-woodsmoke, 0.5);
+    }
   }
 }

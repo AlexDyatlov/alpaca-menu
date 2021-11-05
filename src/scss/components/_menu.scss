@@ -29,12 +29,13 @@
   &__btn {
     position: relative;
     display: none;
-    width: 22px;
-    height: 12px;
+    width: 24px;
+    height: 24px;
 
     @include tablet {
       display: flex;
       align-items: center;
+      justify-content: center;
     }
   }
 
@@ -56,11 +57,11 @@
     }
 
     &::before {
-      top: -1px;
+      top: 5px;
     }
 
     &::after {
-      bottom: -1px;
+      bottom: 5px;
     }
   }
 }
@@ -68,7 +69,13 @@
 .drop {
   position: relative;
 
-  ul {
+  @include tablet {
+    .drop__down .drop__item {
+      border-top: 1px solid $color-woodsmoke;
+    }
+  }
+
+  &__down {
     position: absolute;
     z-index: -1;
     background-color: $color-shark;
@@ -79,14 +86,146 @@
     @include tablet {
       position: static;
       height: 0;
+    }
+
+    &--active {
+      height: auto;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__item {
+     & + & {
+      border-top: 1px solid rgba($color-white, 0.1);
+
+      @include tablet {
+        border-top: none;
+      }
+    }
+
+    &:last-child .drop__link {
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+
+      @include tablet {
+        border-radius: 0;
+      }
+    }
+
+    &--more {
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        right: 12px;
+        top: 17px;
+        border-top: 6px solid $color-jaffa;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+        width: 0;
+        height: 0;
+        transition: transform 0.4s ease-in-out;
+
+        @include tablet {
+          right: 20px;
+          top: 28px;
+        }
+      }
+
+      &:hover {
+        &::after {
+          transform: rotate(-90deg);
+
+          @include tablet {
+            transform: rotate(180deg);
+          }
+        }
+
+        .drop__down {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+
+      .drop__down {
+        left: 100%;
+        bottom: 0;
+        margin-left: 25px;
+        border-radius: 8px;
+        width: 180px;
+
+        @include tablet {
+          margin-left: 0;
+          width: 100%;
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: -17px;
+          bottom: 8px;
+          border-top: 12px solid transparent;
+          border-right: 18px solid $color-shark;
+          border-bottom: 12px solid transparent;
+          width: 0;
+          height: 0;
+
+          @include tablet {
+            content: none;
+          }
+        }
+
+        .drop__link {
+          padding-right: 12px;
+        }
+      }
 
       .drop__item {
-        border-top: 1px solid $color-woodsmoke;
+        &:not(:last-child) .drop__link {
+          border-radius: 0;
+        }
+
+        &:first-child .drop__link {
+          border-radius: 8px 8px 0 0;
+        }
       }
     }
   }
 
-  & > a {
+  &__link {
+    display: block;
+    overflow: hidden;
+    padding: 8px 35px 8px 18px;
+    height: 39px;
+    font-size: 16px;
+    line-height: 1.5;
+    text-overflow: ellipsis;
+    color: $color-alabaster;
+    transition: background-color 0.3s ease-in-out;
+    white-space: nowrap;
+
+    @include desktop {
+      &:hover {
+        background-color: $color-woodsmoke;
+      }
+    }
+
+    @include tablet {
+      padding: 20px;
+      padding-right: 30px;
+      height: auto;
+      font-size: 16px;
+      background-color: $color-shark;
+
+      &:active {
+        background-color: $color-woodsmoke;
+      }
+    }
+  }
+
+  & > .menu__link {
     position: relative;
 
     @include tablet {
@@ -114,18 +253,16 @@
     }
   }
 
-  &:hover a::before {
+  &:hover .menu__link::before {
     transform: rotate(180deg);
   }
 
-  &:hover > ul {
-    z-index: 10;
-    height: auto;
+  &:hover > &__down {
     opacity: 1;
     visibility: visible;
   }
 
-  & > ul {
+  & > &__down {
     top: 59px;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -133,55 +270,6 @@
 
     @include tablet {
       width: 100%;
-    }
-
-    li + li {
-      border-top: 1px solid rgba($color-white, 0.1);
-
-      @include tablet {
-        border-top: none;
-      }
-    }
-
-    a {
-      display: block;
-      display: -webkit-box;
-      overflow: hidden;
-      padding: 8px 12px 8px 18px;
-      height: 39px;
-      font-size: 16px;
-      line-height: 1.5;
-      text-overflow: ellipsis;
-      color: $color-alabaster;
-      transition: background-color 0.3s ease-in-out;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
-
-      @include desktop {
-        &:hover {
-          background-color: $color-woodsmoke;
-        }
-      }
-
-      @include tablet {
-        padding: 20px;
-        height: auto;
-        font-size: 16px;
-        background-color: $color-shark;
-      }
-
-      @include mobile {
-        -webkit-line-clamp: initial;
-      }
-    }
-
-    li:last-child a {
-      border-bottom-right-radius: 8px;
-      border-bottom-left-radius: 8px;
-
-      @include tablet {
-        border-radius: 0;
-      }
     }
 
     &::before {
@@ -200,89 +288,6 @@
       }
     }
   }
-
-  &__item.drop__item--more {
-    position: relative;
-
-    @include tablet {
-      & > a:active {
-        background-color: $color-woodsmoke;
-      }
-    }
-
-    ul {
-      left: 100%;
-      bottom: 0;
-      margin-left: 25px;
-      border-radius: 8px;
-      width: 180px;
-
-      @include tablet {
-        margin-left: 0;
-        width: 100%;
-      }
-
-      &::before {
-        content: "";
-        position: absolute;
-        left: -17px;
-        bottom: 8px;
-        border-top: 12px solid transparent;
-        border-right: 18px solid $color-shark;
-        border-bottom: 12px solid transparent;
-        width: 0;
-        height: 0;
-
-        @include tablet {
-          content: none;
-        }
-      }
-
-      li {
-        &:not(:last-child) a {
-          border-radius: 0;
-        }
-
-        &:first-child a {
-          border-radius: 8px 8px 0 0;
-        }
-      }
-    }
-
-    &:hover {
-      ul {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      &::after {
-        transform: rotate(180deg);
-
-        @include tablet {
-          transform: rotate(90deg);
-        }
-      }
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      right: 12px;
-      top: 17px;
-      border-top: 4px solid transparent;
-      border-right: 8px solid $color-jaffa;
-      border-bottom: 4px solid transparent;
-      width: 0;
-      height: 0;
-      transition: transform 0.4s ease-in-out;
-
-      @include tablet {
-        right: 20px;
-        top: 28px;
-        transform: rotate(-90deg);
-      }
-    }
-  }
 }
 
 .menu__link,
@@ -296,38 +301,19 @@
   }
 }
 
-.menu__item.drop,
-.drop__item.drop__item--more {
-  .drop__down,
-  .drop__list {
-    &.drop__down--active {
-      height: auto;
+@include tablet {
+  .drop,
+  .drop__item--more {
+    &:hover {
+      .drop__down {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    .drop__down.drop__down--active {
       opacity: 1;
       visibility: visible;
-    }
-  }
-}
-
-@include tablet {
-  .menu__item.drop:hover,
-  .drop__item.drop__item--more:hover {
-    .drop__down,
-    .drop__list {
-      height: 0;
-      opacity: 0;
-      visibility: visible;
-    }
-  }
-
-  .menu__item.drop,
-  .drop__item.drop__item--more {
-    .drop__down,
-    .drop__list {
-      &.drop__down--active {
-        height: auto;
-        opacity: 1;
-        visibility: visible;
-      }
     }
   }
 }

@@ -7,10 +7,9 @@
 + HTML/CSS. ✔️ 
 + Js. ✔️
 + Добавил навигацию с клавиатуры (состояние в фокусе). Доступность. ✔️
-+ [Изображение](#Image).
 + [GitHub Pages](http://alexdyatlov.github.io/alpaca-menu).
 
-##### <a name="Image"></a> Изображение
+##### Изображение
 <p align="center">
   <img src="https://github.com/AlexDyatlov/alpaca-menu/raw/master/app/img/readme.png">
 </p>
